@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalMapController : MonoBehaviour {
+public class LocalMapController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -17,21 +17,20 @@ public class GlobalMapController : MonoBehaviour {
 			RaycastHit2D hit = Physics2D.Raycast (ray.origin, ray.direction, Mathf.Infinity);
 			if (hit) {
 				Debug.Log (hit.collider.gameObject.name);
-				if (hit.collider.CompareTag ("City")) {
-					Debug.Log ("hit city");
-					ZoomInLocal (1);
+				if (hit.collider.CompareTag ("Church")) {
+					Debug.Log ("hit church");
+					ZoomInChurch (1);
 				}
 
 			}
 		}
 	}
 
-
-	void ZoomInLocal(int cityID) {
+	void ZoomInChurch(int cityID) {
 		if (cityID == 1) {
-			float GoalX = GameObject.Find ("local_map_001").transform.position.x;
+			Vector3 goal = GameObject.Find ("church_bg_001").transform.position;
 			Vector3 OldPos = Camera.main.transform.position;
-			Camera.main.transform.position = new Vector3 (GoalX, OldPos.y, OldPos.z);
+			Camera.main.transform.position = new Vector3 (OldPos.x, goal.y, OldPos.z);
 		}
 	}
 }
