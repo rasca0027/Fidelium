@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GlobalMapController : MonoBehaviour {
 
+	Vector3 oldCameraPos;
+
 	// Use this for initialization
 	void Start () {
-		
+		oldCameraPos = Camera.main.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -33,5 +35,10 @@ public class GlobalMapController : MonoBehaviour {
 			Vector3 OldPos = Camera.main.transform.position;
 			Camera.main.transform.position = new Vector3 (GoalX, OldPos.y, OldPos.z);
 		}
+	}
+
+	public void BackBtnHandler () {
+
+		Camera.main.transform.position = oldCameraPos;
 	}
 }
